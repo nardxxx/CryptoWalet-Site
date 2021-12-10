@@ -18,28 +18,28 @@ function create(el) {
   return document.createElement(el);
 }
 
-// const swiper = new Swiper('.section-sliderinfo-slider', {
-//   // loop: true,
-//   slidesPerView: 'auto',
-//   autoHeight: true,
-//   // Navigation arrows
-//   navigation: {
-//     nextEl: '.section-sliderinfo-button-row__next',
-//     prevEl: '.section-sliderinfo-button-row__prev',
-//   },
-//   on: {
-//     slideChange: function (e) {
-//       var currentSlide = e.realIndex + 1;
-//       select('.section-sliderinfo-button-row__counter').innerHTML = currentSlide;
-//       let numOfSlides = e.wrapperEl.querySelectorAll(".swiper-slide").length;
-//       select('.section-sliderinfo-button-row__counter').innerHTML += ' of ' + numOfSlides;
-//     },
-//     beforeInit: function (e) {
-//       let numOfSlides = e.wrapperEl.querySelectorAll(".swiper-slide").length;
-//       select('.section-sliderinfo-button-row__counter').innerHTML += ' of ' + numOfSlides;
-//     }
-//   }
-// });
+const swiper = new Swiper('.section-sliderinfo-slider', {
+  // loop: true,
+  slidesPerView: 'auto',
+  autoHeight: true,
+  // Navigation arrows
+  navigation: {
+    nextEl: '.section-sliderinfo-button-row__next',
+    prevEl: '.section-sliderinfo-button-row__prev',
+  },
+  on: {
+    slideChange: function (e) {
+      var currentSlide = e.realIndex + 1;
+      select('.section-sliderinfo-button-row__counter').innerHTML = currentSlide;
+      let numOfSlides = e.wrapperEl.querySelectorAll(".swiper-slide").length;
+      select('.section-sliderinfo-button-row__counter').innerHTML += ' of ' + numOfSlides;
+    },
+    beforeInit: function (e) {
+      let numOfSlides = e.wrapperEl.querySelectorAll(".swiper-slide").length;
+      select('.section-sliderinfo-button-row__counter').innerHTML += ' of ' + numOfSlides;
+    }
+  }
+});
 
 $(document).ready(function () {
   select('.wrapper').classList.add('loaded');
@@ -112,8 +112,7 @@ const modalContent = {
 };
 let emojiGlobal = create('div');
 function modal(triggerSelector, modalSelector) {
-  const btnTriggers = selectAll(triggerSelector),
-    modal = select(modalSelector),
+  const modal = select(modalSelector),
     modalDialog = modal.querySelector('.modal__content');
 
   function setEmojiPopup() {
@@ -196,7 +195,6 @@ function modal(triggerSelector, modalSelector) {
 
           case 'move':
             $(function () {
-
               $(".move-modal ul").sortable();
               $(".move-modal ul").disableSelection();
             });
@@ -239,7 +237,8 @@ function modal(triggerSelector, modalSelector) {
       }
       function setMovePopup() {
         const move = create('div'),
-          moveList = create('ul');
+          moveList = create('ul'),
+          btn = create('button');
 
         move.classList.add('move-modal');
         let sidebarLiList = selectAll('.sidebar-list li');
@@ -254,6 +253,9 @@ function modal(triggerSelector, modalSelector) {
           `;
         });
         move.append(moveList);
+        btn.classList.add('move-modal__btn');
+        btn.textContent = "Done";
+        move.append(btn);
         return move;
       }
       function renderMoveList() {
@@ -268,6 +270,32 @@ function modal(triggerSelector, modalSelector) {
           break;
         case 'move':
           renderMoveList();
+          let sidebarLiList = selectAll('.sidebar-list li');
+
+          const idArray = [];
+
+          // sidebarLiList.forEach((li, key) => li.setAttribute('data-id', key + 1));
+
+          select('.move-modal__btn').addEventListener('click', e => {
+            const modalLiList = selectAll('.move-modal ul li');
+            modalLiList.forEach(li => {
+              idArray.push(li.getAttribute('data-id'));
+            });
+            const itemsList = selectAll('.sidebar-list li');
+
+            var sortable = [];
+            const sidebarList = select('.sidebar-list');
+            idArray.forEach((e) => {
+              sidebarList.append(itemsList[e - 1]);
+            });
+
+
+
+            // sortable.sort(function (a, b) {
+            //   return a[1] - b[1];
+            // });
+            hideModal(modalSelector);
+          });
           break;
 
         case 'trending':

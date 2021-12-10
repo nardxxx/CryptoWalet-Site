@@ -977,7 +977,13 @@ h2 {
   background-color: rgba(0, 0, 0, 0.6);
 }
 
+.modal .move-modal ul {
+  margin-bottom: 20px;
+}
+
 .modal .move-modal ul li {
+  cursor: -webkit-grab;
+  cursor: grab;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1026,6 +1032,18 @@ h2 {
   font-size: 13px;
   letter-spacing: -0.1px;
   line-height: 20px;
+}
+
+.modal .move-modal__btn {
+  color: #1e2124;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: -0.1px;
+  text-align: center;
+  width: 100%;
+  background-color: #26d02b;
+  height: 48px;
+  border-radius: 4px;
 }
 
 .modal.show {
