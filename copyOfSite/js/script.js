@@ -195,7 +195,11 @@ function modal(triggerSelector, modalSelector) {
             });
 
           case 'move':
+            $(function () {
 
+              $(".move-modal ul").sortable();
+              $(".move-modal ul").disableSelection();
+            });
             break;
 
           case 'delete':
@@ -210,15 +214,17 @@ function modal(triggerSelector, modalSelector) {
     });
   }
   sidebarLiSublist();
-  btnTriggers.forEach(btn => {
-    btn.addEventListener('click', e => {
-      showModal(modalSelector);
+  function buttonEvent(e) {
+    const realTarget = e.target.closest('[data-info]');
+
+    if (realTarget) {
+
       function renderEmoji() {
         modalDialog.innerHTML = `
 						<div class="title">Emoji</div>
 					`;
         modalDialog.append(setEmojiPopup());
-        changeEmoji(btn);
+        changeEmoji(realTarget);
       }
       function renderContent(section) {
         modalDialog.innerHTML = `
@@ -237,12 +243,13 @@ function modal(triggerSelector, modalSelector) {
 
         move.classList.add('move-modal');
         let sidebarLiList = selectAll('.sidebar-list li');
-        sidebarLiList.forEach(li => {
-
-
+        sidebarLiList.forEach((li, key) => {
+          key++;
           moveList.innerHTML += `
-          <li>
-            ${li.querySelector('.head__link')};
+          <li data-id = ${key}>
+          <div class="head__link">
+            ${li.querySelector('.head__link').innerHTML}
+          </div>
           </li>
           `;
         });
@@ -255,7 +262,7 @@ function modal(triggerSelector, modalSelector) {
 					`;
         modalDialog.append(setMovePopup());
       }
-      switch (e.currentTarget.getAttribute('data-info')) {
+      switch (realTarget.getAttribute('data-info')) {
         case 'emoji':
           renderEmoji();
           break;
@@ -270,8 +277,10 @@ function modal(triggerSelector, modalSelector) {
         default:
           hideModal(modalSelector);
       }
-    });
-  });
+      showModal(modalSelector);
+    }
+  }
+  document.addEventListener('click', buttonEvent);
 
   modal.addEventListener('click', e => {
     if (e.target === modal || e.target.getAttribute('data-close') == '') {
@@ -322,7 +331,7 @@ function listAdd() {
 							</svg>
 							Edit list
 						</div>
-						<div class="dots-menu-menu__item" data-dots-action="move">
+						<div class="dots-menu-menu__item" data-dots-action="move" data-info="move">
 							<svg fill="currentColor" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 								<path d="M6 6H9V9H6V6Z" fill="currentColor" />
 								<path d="M15 6H18V9H15V6Z" fill="currentColor" />
@@ -346,6 +355,22 @@ function listAdd() {
 				</div>
 				<img class="arrow" src="img/icons/arrowRight.svg" alt="arrowBottom">
 			</div>
+      <div class="head__crypt crypt">
+          				<div class="crypt-inner">
+          					<span></span>
+          					<svg height="16" width="60">
+          						<g>
+          							<g>
+          								<path fill="red"></path>
+          							</g>
+          						</g>
+          					</svg>
+          					<div class="crypt__price">
+          						<p></p>
+          						<span></span>
+          					</div>
+          				</div>
+          			</div>
   `;
     list.prepend(li);
   }

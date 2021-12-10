@@ -1038,6 +1038,7 @@ h2 {
 }
 
 .modal__dialog {
+  width: 100%;
   max-width: 468px;
   margin: 40px auto;
   position: relative;
