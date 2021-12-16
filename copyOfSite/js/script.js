@@ -65,20 +65,25 @@ function ibg() {
   });
 }
 function sidebarDots() {
-  select('.dots').addEventListener('click', e => {
-    const addBtn = select('.add');
-    const list = select('.sidebar-list');
+  try {
+    select('.dots').addEventListener('click', e => {
+      const addBtn = select('.add');
+      const list = select('.sidebar-list');
 
-    addBtn.classList.toggle('active');
-    e.currentTarget.classList.toggle('active');
-    list.classList.toggle('active');
-    if (list.matches('.active')) {
-      list.style.maxHeight = list.scrollHeight + 68 + 92 + 'px';
-    }
-    else {
-      list.style.maxHeight = '0px';
-    }
-  });
+      addBtn.classList.toggle('active');
+      e.currentTarget.classList.toggle('active');
+      list.classList.toggle('active');
+      if (list.matches('.active')) {
+        list.style.maxHeight = list.scrollHeight + 68 + 92 + 'px';
+      }
+      else {
+        list.style.maxHeight = '0px';
+      }
+    });
+  } catch (e) {
+
+  }
+
 }
 function showMore() {
   $("#tranding-list li").slice(0, 12).show();
@@ -147,76 +152,122 @@ function modal(triggerSelector, modalSelector) {
     });
   }
   function sidebarLiSublist() {
-    const sidebarList = select('.sidebar .sidebar-list');
-    sidebarList.addEventListener('click', e => {
-      if (e.target.matches('.head')) {
-        selectAll('.sidebar .sidebar-list li').forEach(el => {
-          if (e.target.parentElement != el) {
-            el.classList.remove('active');
-          }
-        });
-        e.target.parentElement.classList.toggle('active');
-
-      }
-      if (e.target.matches('.head .arrow')) {
-        e.target.parentElement.parentElement.classList.toggle('active');
-      }
-      if (e.target.closest('.dots-menu-menu__item')) {
-        switch (e.target.closest('.dots-menu-menu__item').getAttribute('data-dots-action')) {
-          case 'edit':
-            const additionalModal = select('.additional-modal'),
-              form = additionalModal.querySelector('.additional-modal-form');
-            let currentLi = '';
-            currentLi = e.target.closest('li'),
-              liText = currentLi.querySelector('.title'),
-              liImg = currentLi.querySelector('.head-img-wrapper div');
-            const setPopup = function (e) {
-              select('.additional-modal-form-row__img div').style.backgroundPosition = liImg.style.backgroundPosition;
-              emojiGlobal.style.backgroundPosition = liImg.style.backgroundPosition;
-              additionalModal.classList.add('active');
-              form.addEventListener('submit', replaceTextAndImgOnSubmit);
-            };
-            setPopup(e);
-            function replaceTextAndImgOnSubmit(e) {
-              const inputVal = form.querySelector('input').value;
-              liText.textContent = inputVal;
-              additionalModal.classList.remove('active');
-              e.target.reset();
-              changeEmoji(liImg);
-              liImg.style.backgroundPosition = emojiGlobal.style.backgroundPosition;
-              form.removeEventListener('submit', replaceTextAndImgOnSubmit);
+    try {
+      const sidebarList = select('.sidebar .sidebar-list');
+      sidebarList.addEventListener('click', e => {
+        if (e.target.matches('.head')) {
+          selectAll('.sidebar .sidebar-list li').forEach(el => {
+            if (e.target.parentElement != el) {
+              el.classList.remove('active');
             }
-            additionalModal.addEventListener('click', e => {
-              if (e.target.matches('.additional-modal')) {
-                e.target.classList.remove('active');
-                form.reset();
-              }
-            });
-
-          case 'move':
-            $(function () {
-              $(".move-modal ul").sortable();
-              $(".move-modal ul").disableSelection();
-            });
-            break;
-
-          case 'delete':
-            e.target.closest('li').remove();
-            break;
-
-          default:
+          });
+          e.target.parentElement.classList.toggle('active');
 
         }
-        e.target.closest('.dots-menu').classList.remove('active');
-      }
-    });
+        if (e.target.matches('.head .arrow')) {
+          e.target.parentElement.parentElement.classList.toggle('active');
+        }
+        if (e.target.closest('.dots-menu-menu__item')) {
+          switch (e.target.closest('.dots-menu-menu__item').getAttribute('data-dots-action')) {
+            case 'edit':
+              const additionalModal = select('.additional-modal'),
+                form = additionalModal.querySelector('.additional-modal-form');
+              let currentLi = '';
+              currentLi = e.target.closest('li'),
+                liText = currentLi.querySelector('.title'),
+                liImg = currentLi.querySelector('.head-img-wrapper div');
+              const setPopup = function (e) {
+                select('.additional-modal-form-row__img div').style.backgroundPosition = liImg.style.backgroundPosition;
+                emojiGlobal.style.backgroundPosition = liImg.style.backgroundPosition;
+                additionalModal.classList.add('active');
+                form.addEventListener('submit', replaceTextAndImgOnSubmit);
+              };
+              setPopup(e);
+              function replaceTextAndImgOnSubmit(e) {
+                const inputVal = form.querySelector('input').value;
+                liText.textContent = inputVal;
+                additionalModal.classList.remove('active');
+                e.target.reset();
+                changeEmoji(liImg);
+                liImg.style.backgroundPosition = emojiGlobal.style.backgroundPosition;
+                form.removeEventListener('submit', replaceTextAndImgOnSubmit);
+              }
+              additionalModal.addEventListener('click', e => {
+                if (e.target.matches('.additional-modal')) {
+                  e.target.classList.remove('active');
+                  form.reset();
+                }
+              });
+
+            case 'move':
+              $(function () {
+                $(".move-modal ul").sortable();
+                $(".move-modal ul").disableSelection();
+              });
+              break;
+
+            case 'delete':
+              e.target.closest('li').remove();
+              break;
+
+            default:
+
+          }
+          e.target.closest('.dots-menu').classList.remove('active');
+        }
+      });
+    } catch (error) {
+
+    }
+
   }
   sidebarLiSublist();
   function buttonEvent(e) {
     const realTarget = e.target.closest('[data-info]');
 
     if (realTarget) {
-
+      function renderEditor() {
+        modalDialog.innerHTML = `
+						<div class="title">Edit Profile</div>
+            <form class="edit-profile">
+            <div class="profile-img2">
+						<input type="file" accept=".jpg, .jpeg, .png .svg" id="uploadImg2">
+						<img src="${select('.profile-img img').src}" alt="icon">
+						<div class="addInCircle" data-trigger="openFileInput2">
+							<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+								<path clip-rule="evenodd"
+									d="M12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20ZM22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z"
+									fill="currentColor" fill-rule="evenodd"></path>
+								<path d="M11 13V17H13V13H17V11H13V7H11V11H7V13H11Z" fill="currentColor"></path>
+							</svg>
+						</div>
+            </div>
+            
+            <label for ="name" class ="edit-profile__label">Nickname</label>
+            <div class="edit-profile__input">
+              <input value="${$('.profile-header-row-info__name').text()}" type ="text" name = "name" autocomplete = "off">
+            </div>
+            <label for="username" class ="edit-profile__label">Username</label>
+            <div class="edit-profile__input">
+              <input value="${$('.profile-header-row-info__additional .login').text()}" type = "text" name="username" autocomplete = "off">
+            </div>
+            <label>Theme</label>
+            <div class="edit-profile-colors">
+              <button type="button" class="edit-profile-colors__color active"></button>
+              <button type="button" class="edit-profile-colors__color"></button>
+              <button type="button" class="edit-profile-colors__color"></button>
+              <button type="button" class="edit-profile-colors__color"></button>
+              <button type="button" class="edit-profile-colors__color"></button>
+              <button type="button" class="edit-profile-colors__color"></button>
+              <button type="button" class="edit-profile-colors__color"></button>
+            </div>
+            
+            <div class="edit-profile__btn">
+              <button type="submit">Save Changes</button>
+            </div>
+            </form>
+        `
+      }
       function renderEmoji() {
         modalDialog.innerHTML = `
 						<div class="title">Emoji</div>
@@ -265,16 +316,47 @@ function modal(triggerSelector, modalSelector) {
         modalDialog.append(setMovePopup());
       }
       switch (realTarget.getAttribute('data-info')) {
+        case 'editor':
+          renderEditor();
+          $('.edit-profile-colors__color').on('click', function () {
+            $(this)
+              .addClass('active').siblings().removeClass('active');
+          });
+          select('.edit-profile').addEventListener('submit', e => {
+            e.preventDefault();
+
+            select('.profile-header-row-info__name')
+              .textContent = e.target.querySelector('input[name="name"]').value;
+
+            select('.profile-header-row-info__additional .login')
+              .textContent = e.target.querySelector('input[name="username"]').value
+                .replace(/\s/img, '');
+
+
+            let selectedColour = $('.edit-profile-colors__color.active').css('background-color');
+            $('head style[title="colorTheme"]').remove();
+            const colorStyles = create('style');
+            colorStyles.title = "colorTheme";
+            colorStyles.innerHTML += `
+              .main-profile {
+              --mainColor:  ${selectedColour};
+              --secondColor: ${selectedColour.replace(/^rgb/, 'rgba').replace(/\)/, ', 0.2)').replace(/\s/g, '')};
+              --hoverColor: ${selectedColour.replace(/^rgb/, 'rgba').replace(/\)/, ', 0.9)').replace(/\s/g, '')};
+              }
+           `;
+            select('head').append(colorStyles);
+            select('.profile-img img').src = select('.profile-img2 img').src;
+            hideModal(modalSelector);
+          });
+          uploadImg('#uploadImg2', '.profile-img2 img');
+
+          break;
         case 'emoji':
           renderEmoji();
           break;
         case 'move':
           renderMoveList();
-          let sidebarLiList = selectAll('.sidebar-list li');
-
           const idArray = [];
-
-          // sidebarLiList.forEach((li, key) => li.setAttribute('data-id', key + 1));
 
           select('.move-modal__btn').addEventListener('click', e => {
             const modalLiList = selectAll('.move-modal ul li');
@@ -288,16 +370,9 @@ function modal(triggerSelector, modalSelector) {
             idArray.forEach((e) => {
               sidebarList.append(itemsList[e - 1]);
             });
-
-
-
-            // sortable.sort(function (a, b) {
-            //   return a[1] - b[1];
-            // });
             hideModal(modalSelector);
           });
           break;
-
         case 'trending':
           renderContent('trending');
           break;
@@ -322,16 +397,19 @@ function modal(triggerSelector, modalSelector) {
   });
 }
 function openDotsMenu(e) {
+  if (e.target.matches('#liSubmenu span')) {
+    e.target.nextElementSibling.classList.toggle('active');
+  }
   if (e.target.closest('.dots-menu > svg') || e.target.matches('.dots-menu .dots-menu-wrapper')) {
     e.target.closest('.dots-menu').classList.toggle('active');
   }
 }
 function listAdd() {
-  function appendNewListItem(listSelector, inputVal, pos) {
-    const list = select(listSelector);
-    const li = create('li');
-    li.innerHTML = `
-		
+  try {
+    function appendNewListItem(listSelector, inputVal, pos) {
+      const list = select(listSelector);
+      const li = create('li');
+      li.innerHTML = `
       <div class="head">
 				<a href="#" class="head__link">
 						<div class="head-img-wrapper">
@@ -400,40 +478,80 @@ function listAdd() {
           				</div>
           			</div>
   `;
-    list.prepend(li);
-  }
-  const additional = select('.sidebar .additional'),
-    additionalForm = select('.sidebar .additional-form'),
-    cancelBtn = additionalForm.querySelector('.additional-form-buttons button');
-
-  additional.addEventListener('click', e => {
-    if (e.target.matches('.additional')) {
-      e.target.classList.toggle('active');
-      additionalForm.reset();
+      list.prepend(li);
     }
-  });
+    const additional = select('.sidebar .additional'),
+      additionalForm = select('.sidebar .additional-form'),
+      cancelBtn = additionalForm.querySelector('.additional-form-buttons button');
 
-  cancelBtn.addEventListener('click', e => {
-    additionalForm.reset();
-    additionalForm.parentElement.classList.toggle('active');
-  });
-  select('.sidebar .add').addEventListener('click', e => {
-    select('sidebar .additional').classList.toggle('active');
-  });
-  additionalForm.addEventListener('submit', e => {
-    e.preventDefault();
-    additionalForm.parentElement.classList.toggle('active');
-    const input = additionalForm.querySelector('input'),
-      imgPos = additionalForm.querySelector('.additional-form-row__img div').style.backgroundPosition;
-    appendNewListItem('.sidebar-list', input.value, imgPos);
-    additionalForm.reset();
-    additionalForm.querySelector('.additional-form-row__img div').style.backgroundPosition = '';
-    select('.sidebar-list').style.maxHeight = select('.sidebar-list').scrollHeight + 68 + 'px';
-  });
+    additional.addEventListener('click', e => {
+      if (e.target.matches('.additional')) {
+        e.target.classList.toggle('active');
+        additionalForm.reset();
+      }
+    });
+
+    cancelBtn.addEventListener('click', e => {
+      additionalForm.reset();
+      additionalForm.parentElement.classList.toggle('active');
+    });
+    select('.sidebar .add').addEventListener('click', e => {
+      select('sidebar .additional').classList.toggle('active');
+    });
+    additionalForm.addEventListener('submit', e => {
+      e.preventDefault();
+      additionalForm.parentElement.classList.toggle('active');
+      const input = additionalForm.querySelector('input'),
+        imgPos = additionalForm.querySelector('.additional-form-row__img div').style.backgroundPosition;
+      appendNewListItem('.sidebar-list', input.value, imgPos);
+      additionalForm.reset();
+      additionalForm.querySelector('.additional-form-row__img div').style.backgroundPosition = '';
+      select('.sidebar-list').style.maxHeight = select('.sidebar-list').scrollHeight + 68 + 'px';
+    });
+  } catch (error) {
+
+  }
+
 }
 
 
+$(function () {
+
+  $(".profile-tabs__disclamer .showMore").on('click', function () {
+    $(this).parent().toggleClass('abbreviated');
+  });
+
+  $('.profile-tab').on('click', function () {
+    $(this)
+      .addClass('active').siblings().removeClass('active')
+      .closest('.profile-tabs').find('.profile-tabs-content').removeClass('active').eq($(this).index()).addClass('active');
+  });
+  $('.profile-tab').eq(0).trigger('click');
+
+  $('body').on('click', '[data-trigger]', function () {
+    if ($(this).data('trigger') == 'openFileInput') {
+      $('#uploadImg').trigger('click');
+    } else if ($(this).data('trigger') == 'openFileInput2') {
+      $('#uploadImg2').trigger('click');
+    }
+  });
 
 
+  uploadImg('#uploadImg', '.profile-img img');
+});
+function uploadImg(inputSelector, targetSelector) {
+  $(inputSelector).on('change', function () {
+    var selectedFile = this.files[0];
+    var reader = new FileReader();
+    var imgtag = select(targetSelector);
+    imgtag.title = selectedFile.name;
 
+    reader.onload = function (event) {
+      imgtag.src = this.result;
+    };
+
+    reader.readAsDataURL(selectedFile);
+    select(targetSelector).src = '';
+  });
+}
 

@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+
+<html dir="ltr">
+<head>
+  <title>Profile</title>
+  <meta charset="utf-8">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+  <link rel="stylesheet" type="text/css" href="css/style.min.css">
+
+</head>
+
+<body>
+	<header class="header">
+		<div class="header__row">
+			<div class="header__logo">
+				<a href="/">
+					<img src="img/logo.svg" alt="logog">
+				</a>
+			</div>
+			<div class="header__search">
+				<div class="header__search-inner">
+					<img src="img/icons/search.svg" alt="">
+					<input placeholder="Search" type="search" autocomplete="off">
+				</div>
+			</div>
+			<nav class="menu">
+				<div class="menu-body">
+					<ul class="menu__list">
+						<li><a href="#">Rewards</a></li>
+						<li><a href="#">Portfolio</a></li>
+						<li><a href="#">Cash</a></li>
+						<li><a href="#">Messages</a></li>
+						<li id="liSubmenu">
+							<span>Account</span>
+							<div class="dots-menu">
+								<div class="dots-menu-wrapper"></div>
+								<div class="dots-menu-menu">
+									<div class="dots-menu-menu__title">Nickname</div>
+									<a href="/profile.html" class="dots-menu-menu-item">
+										<svg fill="currentColor" role="img" viewBox="0 0 24 24"
+											xmlns="http://www.w3.org/2000/svg">
+											<path d="M9 9V19H17.5L20 12V9H14.5L15.5 5L14 3L9 9Z" fill="currentColor" />
+											<path d="M7 9H4V19H7V9Z" fill="currentColor" />
+										</svg> Profile
+									</a>
+									<a class="dots-menu-menu-item">
+										<svg fill="currentColor" role="img" viewBox="0 0 24 24"
+											xmlns="http://www.w3.org/2000/svg">
+											<path
+												d="M12 15.5C13.933 15.5 15.5 13.933 15.5 12C15.5 10.067 13.933 8.5 12 8.5C10.067 8.5 8.5 10.067 8.5 12C8.5 13.933 10.067 15.5 12 15.5Z"
+												fill="currentColor"></path>
+											<path clip-rule="evenodd"
+												d="M19.6 9.6L22 10V14L19.6 14.4C19.5 14.8 19.3 15.3 19.1 15.7L20.5 17.7L17.7 20.5L15.7 19.1C15.3 19.3 14.9 19.5 14.4 19.6L14 22H10L9.6 19.6C9.2 19.5 8.7 19.3 8.3 19.1L6.3 20.5L3.5 17.7L4.9 15.7C4.7 15.3 4.5 14.9 4.4 14.4L2 14V10L4.4 9.6C4.5 9.2 4.7 8.7 4.9 8.3L3.5 6.3L6.3 3.5L8.3 4.9C8.7 4.7 9.2 4.5 9.6 4.4L10 2H14L14.4 4.4C14.8 4.5 15.3 4.7 15.7 4.9L17.7 3.5L20.5 6.3L19.1 8.3C19.3 8.7 19.5 9.1 19.6 9.6ZM12 17.5C15.0376 17.5 17.5 15.0376 17.5 12C17.5 8.96243 15.0376 6.5 12 6.5C8.96243 6.5 6.5 8.96243 6.5 12C6.5 15.0376 8.96243 17.5 12 17.5Z"
+												fill="currentColor" fill-rule="evenodd"></path>
+										</svg> Settings
+									</a>
+									<a class="dots-menu-menu-item">
+										<svg fill="currentColor" role="img" viewBox="0 0 24 24"
+											xmlns="http://www.w3.org/2000/svg">
+											<path clip-rule="evenodd"
+												d="M2 12C2 6.48 6.48 2 12 2C17.52 2 22 6.48 22 12C22 17.52 17.52 22 12 22C6.48 22 2 17.52 2 12ZM10.8501 13.74C10.8501 12.55 11.5401 12.01 12.4401 11.42L12.5467 11.3487C13.3247 10.8289 14.0201 10.3643 14.0201 9.36C14.0201 8.62 13.5301 7.83 12.1601 7.83C10.4601 7.83 10.0101 9.02 9.94006 10.16L8.06006 9.98C8.10006 7.71 9.42006 6 12.2101 6C14.3401 6 15.9401 7.39 15.9401 9.24C15.9401 10.87 15.1301 11.51 14.2101 12.13C14.0986 12.2052 13.9905 12.2759 13.8868 12.3439C13.1627 12.8182 12.6501 13.154 12.6501 13.88V14H10.8501V13.74ZM10.6801 15.77H13.0001V18H10.6801V15.77Z"
+												fill="currentColor" fill-rule="evenodd"></path>
+										</svg> Help
+									</a>
+									<a class="dots-menu-menu-item">
+										<svg fill="currentColor" role="img" viewBox="0 0 24 24"
+											xmlns="http://www.w3.org/2000/svg">
+											<path clip-rule="evenodd"
+												d="M3 3H21V21H3V3ZM17 7H7V9H17V7ZM7 11H17V13H7V11ZM12 15H7V17H12V15Z"
+												fill="currentColor" fill-rule="evenodd"></path>
+										</svg> Applicaton Status
+									</a>
+									<a class="dots-menu-menu-item">
+										<svg fill="currentColor" role="img" viewBox="0 0 24 24"
+											xmlns="http://www.w3.org/2000/svg">
+											<path
+												d="M16.2928 17.7072L21.9999 12.0001L16.2928 6.29297L14.8786 7.70718L18.1714 11L9.1 11V13L18.1715 13L14.8786 16.293L16.2928 17.7072Z"
+												fill="currentColor"></path>
+											<path clip-rule="evenodd"
+												d="M9.8 3.19995L9.8 5.19995L4 5.19995L4 18.8H9.8V20.7999H2L2 3.19995L9.8 3.19995Z"
+												fill="currentColor" fill-rule="evenodd"></path>
+										</svg> Log Out
+									</a>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</nav>
+			<div class="icon-menu">
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+		</div>
+	</header>
+	<div class="wrapper profile-wrapper">
+		<main class="main-profile">
+
+			<div class="profile-header">
+				<div class="profile-header-row">
+					<div class="profile-img">
+						<input type="file" accept=".jpg, .jpeg, .png .svg" id="uploadImg">
+						<img src="img/icons/smile.svg" alt="icon">
+						<div class="addInCircle" data-trigger="openFileInput">
+							<svg fill="currentColor" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+								<path clip-rule="evenodd"
+									d="M12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20ZM22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z"
+									fill="currentColor" fill-rule="evenodd"></path>
+								<path d="M11 13V17H13V13H17V11H13V7H11V11H7V13H11Z" fill="currentColor"></path>
+							</svg>
+						</div>
+					</div>
+					<div class="profile-header-row-info">
+						<h3 class="profile-header-row-info__name">Konstantin F</h3>
+						<div class="profile-header-row-info__additional">
+							<span class="login">Konstantin</span>
+							<span class="date">Joined 2021</span>
+						</div>
+					</div>
+					<div class="profile-header-row__edit-btn" data-info="editor">
+						<button>Edit Profile</button>
+					</div>
+				</div>
+			</div>
+			<div class="profile-tabs">
+				<div class="profile-tabs-row">
+					<div class="profile-tabs-row__tab profile-tab active">
+						<div class="title">Stocks</div>
+						<div class="percentage">0%</div>
+					</div>
+					<div class="profile-tabs-row__tab profile-tab">
+						<div class="title">Stocks</div>
+						<div class="percentage">0%</div>
+					</div>
+					<div class="profile-tabs-row__tab profile-tab">
+						<div class="title">Stocks</div>
+						<div class="percentage">0%</div>
+					</div>
+					<div class="profile-tabs-row__tab profile-tab">
+						<div class="title">Stocks</div>
+						<div class="percentage">0%</div>
+					</div>
+
+				</div>
+				<div class="profile-tabs-content">
+					<div class="profile-tabs__describe">
+						<div class="text">Stocks are pieces of a company that investors can own.</div>
+						<a href="#">Learn More</a>
+					</div>
+					<ul class="profile-tabs-tags">
+						<li class="profile-tabs-tags__tag">
+							<a href="#">
+								<div class="img-trending"><img src="img/tags/1.png" alt="1"></div>
+								<span>Popular</span>
+							</a>
+						</li>
+						<li class="profile-tabs-tags__tag">
+							<a href="#">
+								<div class="img-trending"><img src="img/tags/2.png" alt="2"></div>
+								<span>Inex</span>
+							</a>
+						</li>
+						<li class="profile-tabs-tags__tag">
+							<a href="#">
+								<div class="img-trending"><img src="img/tags/3.png" alt="3"></div>
+								<span>Crypto</span>
+							</a>
+						</li>
+						<li class="profile-tabs-tags__tag">
+							<a href="#">
+								<div class="img-trending"><img src="img/tags/4.png" alt="4"></div>
+								<span>Ipo</span>
+							</a>
+						</li>
+						<li class="profile-tabs-tags__tag">
+							<a href="#">
+								<div class="img-trending"><img src="img/tags/5.png" alt="5"></div>
+								<span>Altcoins</span>
+							</a>
+						</li>
+						<li class="profile-tabs-tags__tag">
+							<a href="#">
+								<div class="img-trending"><img src="img/tags/6.png" alt="6"></div>
+								<span>100</span>
+							</a>
+						</li>
+						<li class="profile-tabs-tags__tag">
+							<a href="#">
+								<div class="img-trending"><img src="img/tags/7.png" alt="7"></div>
+								<span>Most</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="profile-tabs-content">
+					<div class="profile-tabs__describe">
+						<div class="text">ETFs are bundles of stocks, bonds, or other assets with a specific theme.
+						</div>
+						<a href="#">Learn More</a>
+					</div>
+					<ul class="profile-tabs-tags">
+						<li class="profile-tabs-tags__tag">
+							<a href="#">
+								<div class="img-trending"><img src="img/tags/1.png" alt="1"></div>
+								<span>Popular</span>
+							</a>
+						</li>
+						<li class="profile-tabs-tags__tag">
+							<a href="#">
+								<div class="img-trending"><img src="img/tags/2.png" alt="2"></div>
+								<span>Inex</span>
+							</a>
+						</li>
+						<li class="profile-tabs-tags__tag">
+							<a href="#">
+								<div class="img-trending"><img src="img/tags/3.png" alt="3"></div>
+								<span>Crypto</span>
+							</a>
+						</li>
+						<li class="profile-tabs-tags__tag">
+							<a href="#">
+								<div class="img-trending"><img src="img/tags/4.png" alt="4"></div>
+								<span>Ipo</span>
+							</a>
+						</li>
+						<li class="profile-tabs-tags__tag">
+							<a href="#">
+								<div class="img-trending"><img src="img/tags/5.png" alt="5"></div>
+								<span>Altcoins</span>
+							</a>
+						</li>
+						<li class="profile-tabs-tags__tag">
+							<a href="#">
+								<div class="img-trending"><img src="img/tags/6.png" alt="6"></div>
+								<span>100</span>
+							</a>
+						</li>
+						<li class="profile-tabs-tags__tag">
+							<a href="#">
+								<div class="img-trending"><img src="img/tags/7.png" alt="7"></div>
+								<span>Most</span>
+							</a>
+						</li>
+						<li class="profile-tabs-tags__tag">
+							<a href="#">
+								<div class="img-trending"><img src="img/tags/7.png" alt="7"></div>
+								<span>Most</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="profile-tabs-content">
+					<div class="profile-tabs__describe">
+						<div class="text">Options trading isn't available to you at this time.</div>
+						<a href="#">Learn More</a>
+					</div>
+					<ul class="profile-tabs-tags"></ul>
+				</div>
+				<div class="profile-tabs-content">
+					<div class="profile-tabs__describe">
+						<div class="text">Cryptocurrencies are digital assets exchanged over a decentralized network.
+						</div>
+						<a href="#">Learn More</a>
+					</div>
+					<ul class="profile-tabs-tags">
+						<li class="profile-tabs-tags__tag">
+							<a href="#">
+								<div class="img-trending"><img src="img/tags/1.png" alt="1"></div>
+								<span>Popular</span>
+							</a>
+						</li>
+						<li class="profile-tabs-tags__tag">
+							<a href="#">
+								<div class="img-trending"><img src="img/tags/2.png" alt="2"></div>
+								<span>Inex</span>
+							</a>
+						</li>
+						<li class="profile-tabs-tags__tag">
+							<a href="#">
+								<div class="img-trending"><img src="img/tags/3.png" alt="3"></div>
+								<span>Crypto</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="profile-tabs__disclamer abbreviated">
+					<span class="">All investing involves risk, including the loss of principal. No investments are FDIC
+						insured.
+						Robinhood Financial LLC
+						(member SIPC), is an introducing registered broker-dealer. Your securities are custodied by our
+						affiliate, Robinhood
+						Securities, LLC (member SIPC)</span>
+					<span>
+						, a clearing broker-dealer, which services your account by
+						executing,
+						clearing and settling
+						your securities trades; preparing and distributing your account statements and trade
+						confirmations;
+						and extending credit
+						to margin enabled accounts. Robinhood Crypto, LLC provides cryptocurrency custodial and trading
+						services and is not a
+						member of SIPC. Robinhood Financial, Robinhood Securities and Robinhood Crypto (together,
+						"Robinhood") are wholly-owned
+						subsidiaries of Robinhood Markets, Inc., a publicly traded company under the ticker HOOD on the
+						NASDAQ.Certain
+						fundamental, market data, or other information is provided directly or indirectly by, or based
+						on
+						information provided
+						by, third party data providers, which may include FactSet Research Systems, Inc. (Copyright ©
+						2021
+						FactSet Research
+						Systems Inc. All rights reserved.), Morningstar, Inc. (Copyright © 2021 Morningstar. All rights
+						reserved.), and/or other
+						third party providers. Robinhood does not make any warranty or guarantee relating to the
+						accuracy,
+						timeliness or
+						completeness of any third-party information. Any Morningstar information (1) is proprietary to
+						Morningstar and/or its
+						content providers; (2) may not be copied or distributed; and (3) is not warranted to be
+						accurate,
+						complete or timely.
+						Third party data providers and their content providers are not responsible for any damages or
+						losses
+						arising from any
+						use of this information. Past performance is no guarantee of future results. The provision of
+						this
+						information does not
+						constitute investment advice or a recommendation of any security, transaction, account type,
+						investment strategy
+						involving securities, or order.
+					</span><span class="showMore"></span>
+				</div>
+			</div>
+			<div class="modal">
+				<div class="modal__dialog">
+					<div data-close class="modal__close">&times;</div>
+					<div class="modal__content">
+
+					</div>
+				</div>
+			</div>
+		</main>
+	</div>
+	<script src='js/jquery-3.5.1.js'></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+	<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+	<script src="js/script.min.js"></script>
+</body>
+
+</html>
