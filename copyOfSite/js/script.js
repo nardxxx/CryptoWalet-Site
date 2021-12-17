@@ -48,6 +48,10 @@ $(document).ready(function () {
     e.currentTarget.classList.toggle('active');
     select('.menu-body').classList.toggle('active');
     select('body').classList.toggle('lock');
+    if (select('.dots-menu')) {
+      $('.dots-menu').removeClass('active');
+
+    }
   });
   ibg();
   sidebarDots();
