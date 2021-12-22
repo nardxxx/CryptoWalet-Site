@@ -77,23 +77,28 @@ const swiper = new Swiper('.section-sliderinfo-slider', {
 });
 
 $(document).ready(function () {
-  select('.wrapper').classList.add('loaded');
-  // MENU BURGER
-  select('.icon-menu').addEventListener('click', e => {
-    e.currentTarget.classList.toggle('active');
-    select('.menu-body').classList.toggle('active');
-    select('body').classList.toggle('lock');
-    if (select('.dots-menu')) {
-      $('.dots-menu').removeClass('active');
+  try {
+    select('.wrapper').classList.add('loaded');
+    // MENU BURGER
+    select('.icon-menu').addEventListener('click', e => {
+      e.currentTarget.classList.toggle('active');
+      select('.menu-body').classList.toggle('active');
+      select('body').classList.toggle('lock');
+      if (select('.dots-menu')) {
+        $('.dots-menu').removeClass('active');
 
-    }
-  });
-  ibg();
-  sidebarDots();
-  showMore();
-  modal('[data-info]', '.modal');
-  listAdd();
-  document.addEventListener('click', openDotsMenu);
+      }
+    });
+    ibg();
+    sidebarDots();
+    showMore();
+    modal('[data-info]', '.modal');
+    listAdd();
+    document.addEventListener('click', openDotsMenu);
+  } catch (error) {
+    console.log(error);
+  }
+
 });
 //INTERACTIVE BACKGROUND
 function ibg() {
