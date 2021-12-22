@@ -8,6 +8,41 @@ function webpAndAvifCheck() {
 }
 webpAndAvifCheck();
 
+// const accordions = document.querySelectorAll(".spoiler-answer");
+
+// const openAccordion = (accordion) => {
+// 	const content = accordion.querySelector(".spoiler-answer__text");
+// 	accordion.classList.add("spoiler-answer_active");
+// 	content.style.maxHeight = content.scrollHeight + "px";
+// };
+
+// const closeAccordion = (accordion) => {
+// 	const content = accordion.querySelector(".spoiler-answer__text");
+// 	accordion.classList.remove("spoiler-answer_active");
+// 	content.style.maxHeight = null;
+// };
+
+// accordions.forEach((accordion) => {
+// 	const intro = accordion.querySelector(".spoiler-answer__close");
+// 	const content = accordion.querySelector(".spoiler-answer__text");
+// 	intro.onclick = () => {
+// 		if (content.style.maxHeight) {
+// 			closeAccordion(accordion);
+// 		} else {
+// 			accordions.forEach((accordion) => closeAccordion(accordion));
+// 			openAccordion(accordion);
+// 		}
+// 	};
+// });
+
+
+if ($('.accordeon').length > 0) {
+	$('.accordeon-body').css({ 'display': 'none' });
+	$('.accordeon-body__close, .accordeon > .title').on('click', function () {
+		$(this).closest('li').toggleClass('active').find('.title').eq(0).toggleClass('active').next('.accordeon-body').toggleClass('active').slideToggle(200);
+	});
+}
+
 function select(selector) {
   return document.querySelector(selector);
 }
@@ -558,4 +593,21 @@ function uploadImg(inputSelector, targetSelector) {
     select(targetSelector).src = '';
   });
 }
+
+$('.section-appearance .droplist').on('click', '.droplist__title, .droplist__close-wrapper, .droplist__list li', function (e) {
+  $(this).closest('.droplist').toggleClass('active');
+  if ($(this).is('li')) {
+    $(this).addClass('active').siblings().removeClass('active');
+    $(this).parent().prev().text($(this).text());
+  }
+});
+
+$('.bigmodal-trigger > .title').on('click', function (e) {
+  $(this).next().toggleClass('active');
+  $('body').toggleClass('lock');
+});
+$('.bigmodal-trigger .modal-big__close').on('click', function (e) {
+  $(this).parent().toggleClass('active');
+  $('body').toggleClass('lock');
+});
 
